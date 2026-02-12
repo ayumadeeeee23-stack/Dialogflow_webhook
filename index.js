@@ -1,52 +1,33 @@
-const express = require("express");
-const app = express();
-
-app.use(express.json());
-
 const jadwal = {
   senin: [
-    { waktu: "08.00-09.30", mapel: "Matematika" },
-    { waktu: "09.30-11.00", mapel: "Bahasa Indonesia" }
+    { waktu: "08.10-10.10", mapel: "Agama" },
+    { waktu: "10.40-15.00", mapel: "Dasar-dasar akuntansi" }
   ],
+
   selasa: [
-    { waktu: "08.00-09.30", mapel: "IPA" },
-    { waktu: "09.30-11.00", mapel: "Bahasa Inggris" }
+    { waktu: "07.30-09.30", mapel: "Pjok" },
+    { waktu: "09.30-11.20", mapel: "Matematika" },
+    { waktu: "11.20-15.40", mapel: "Ipas" }
   ],
+
   rabu: [
-    { waktu: "08.00-09.30", mapel: "IPS" },
-    { waktu: "09.30-11.00", mapel: "PKN" }
+    { waktu: "07.30-08.50", mapel: "Sejarah" },
+    { waktu: "08.50-13.20", mapel: "Dasar-dasar akuntansi" },
+    { waktu: "13.40-15.00", mapel: "Kka" }
   ],
+
   kamis: [
-    { waktu: "08.00-09.30", mapel: "Seni Budaya" },
-    { waktu: "09.30-11.00", mapel: "Matematika" }
+    { waktu: "07.30-08.50", mapel: "Bahasa indonesia" },
+    { waktu: "08.50-12.00", mapel: "Informatika" },
+    { waktu: "12.00-15.00", mapel: "Bahasa inggris" },
+    { waktu: "15.00-15.40", mapel: "BK" }
   ],
+
   jumat: [
-    { waktu: "08.00-09.30", mapel: "Agama" },
-    { waktu: "09.30-11.00", mapel: "Olahraga" }
+    { waktu: "08.10-09.30", mapel: "Seni budaya" },
+    { waktu: "09.30-11.20", mapel: "Pkn" },
+    { waktu: "11.20-12.40", mapel: "Bahasa Indonesia" },
+    { waktu: "12.40-14.20", mapel: "Bahasa Bali" },
+    { waktu: "14.20-15.40", mapel: "Matematika" }
   ]
 };
-
-app.post("/", (req, res) => {
-  const hari = req.body.queryResult.parameters.hari;
-
-  if (!jadwal[hari]) {
-    return res.json({
-      fulfillmentText: "Maaf, jadwal untuk hari tersebut tidak ditemukan."
-    });
-  }
-
-  let responseText = `Jadwal hari ${hari}:\n`;
-
-  jadwal[hari].forEach(item => {
-    responseText += `${item.waktu} - ${item.mapel}\n`;
-  });
-
-  res.json({
-    fulfillmentText: responseText
-  });
-});
-
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log("Server berjalan di port " + PORT);
-});

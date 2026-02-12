@@ -1,0 +1,12 @@
+{
+  "name": "webhook-jadwal",
+  "version": "1.0.0",
+  "description": "Webhook Dialogflow Jadwal Sekolah",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
